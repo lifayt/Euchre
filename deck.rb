@@ -30,7 +30,3 @@ class Deck
     end
 
 end
-
-deck = Deck.new()
-
-puts deck.deck

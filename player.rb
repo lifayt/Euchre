@@ -8,4 +8,4 @@ class Player
         @hand = {}
     end
 
-end
+end 
