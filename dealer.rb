@@ -3,7 +3,7 @@ class Dealer
 
     attr_accessor :players, :deck
 
-    def initialize(players)
+    def initialize(players, deck)
         @players = players
         @deck = deck
     end

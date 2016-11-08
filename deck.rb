@@ -25,7 +25,7 @@ class Deck
 
     def shuffle_deck
         5.times do 
-            @deck.deck = @deck.deck.shuffle
+            @deck = @deck.shuffle
         end
     end
 

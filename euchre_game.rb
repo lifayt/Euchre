@@ -1,4 +1,6 @@
-
+Dir.glob(File.expand_path("../Euchre/*.rb")).each do |file|
+    require file
+end
 
 class EuchreGame 
 
@@ -6,12 +8,12 @@ class EuchreGame
 
     def initialize
         @deck = Deck.new()
-        @dealer = Dealer.new()
         @players = []
-        @turn = 0
         4.times do 
             @players << Player.new()
         end
+        @dealer = Dealer.new(@players, @deck)
+        @turn = 0
     end 
 
     def play
@@ -21,7 +23,7 @@ class EuchreGame
 
     def dealing_round
         update_turns
-        Dealer.deal
+        @dealer.deal
     end
 
     def update_turns
@@ -29,3 +31,6 @@ class EuchreGame
         @turn += 1
     end
 end 
+
+game = EuchreGame.new
+game.play
