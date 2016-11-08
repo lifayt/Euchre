@@ -9,6 +9,7 @@ class Deck
     end
 
     def generate_deck
+        @deck = []
         @id = 1
         ['hearts', 'diamonds', 'spades', 'clubs'].each do |suit| 
             construct_suit(suit)
