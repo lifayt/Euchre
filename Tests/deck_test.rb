@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require '../Deck.rb'
+require '../deck.rb'
 
 class DeckTest < Minitest::Test
 
@@ -24,5 +24,16 @@ class DeckTest < Minitest::Test
     def test_numbers
         @deck.generate_deck
         assert_equal false, @deck.deck.any? { |card| card[0] < 8 || card[0] > 14}
+    end
+
+    def test_deal
+        @deck.generate_deck
+        assert_equal 4, @deck.deal.size
+    end
+
+    def test_kitty 
+        @deck.generate_deck
+        @deck.deal
+        assert_equal 4, @deck.kitty.size
     end
 end

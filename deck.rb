@@ -30,4 +30,14 @@ class Deck
         end
     end
 
+    def deal
+        generate_deck
+        @kitty = @deck.slice!(0..3)
+        hands = []
+        4.times do 
+            hands << @deck.slice!(0..3)
+        end
+        return hands
+    end 
+
 end

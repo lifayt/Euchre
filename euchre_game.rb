@@ -4,7 +4,7 @@ end
 
 class EuchreGame 
 
-    attr_accessor :deck, :dealer, :players, :turn
+    attr_accessor :deck, :players, :turn
 
     def initialize
         @deck = Deck.new()
@@ -12,7 +12,6 @@ class EuchreGame
         4.times do 
             @players << Player.new()
         end
-        @dealer = Dealer.new(@players, @deck)
         @turn = 0
     end 
 
@@ -23,12 +22,23 @@ class EuchreGame
 
     def dealing_round
         update_turns
-        @dealer.deal
+        assign_cards(@deck.deal)
     end
 
     def update_turns
         @turn = @turn%4
         @turn += 1
+    end
+
+    def assign_cards(hands)
+        @players.each_with_index do |player, index|
+            player.hand = hands[index]
+            puts player.hand
+        end 
+    end
+
+    def trick_round
+        puts "implement trick round!"
     end
 end 
 
