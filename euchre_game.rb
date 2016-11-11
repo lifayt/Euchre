@@ -12,36 +12,51 @@ class EuchreGame
         4.times do 
             @players << Player.new()
         end
-        @turn = 0
+        @dealer_position = rand(4)
     end 
 
     def play
-        dealing_round
+        deal_round
+        order_round 
+        call_round
         trick_round
     end
 
-    def dealing_round
-        update_turns
+    def deal_round
+        track_players
         assign_cards(@deck.deal)
-        decide_trump
     end
 
-    def update_turns
-        @turn = @turn%4
-        @turn += 1
+    def track_players
+        @dealer_position = @dealer_position%4
+        @dealer_position += 1
+    end
+
+    def dealer
+        return @players[@dealer_position]
     end
 
     def assign_cards(hands)
         @players.each_with_index do |player, index|
             player.hand = hands[index]
-            puts player.hand
         end 
     end
 
-    def decide_trump
-        index = @turn
-        #@players[index].ask
+    def order_round
+        4.times do 
+            if @players[track_players].order?
+                order_up
+            end
+        end
     end
+
+    def order_up
+
+    end
+
+    def call_round
+    
+    end 
 
     def trick_round
         puts "implement trick round!"
