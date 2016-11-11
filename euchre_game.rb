@@ -4,7 +4,7 @@ end
 
 class EuchreGame
 
-    attr_accessor :deck, :players, :turn
+    attr_accessor :deck, :players, :turn, :trump
 
     def initialize
         @deck = Deck.new()
@@ -17,8 +17,7 @@ class EuchreGame
 
     def play
         deal_round
-        order_round 
-        call_round
+        determine_trump
         trick_round
     end
 
@@ -42,16 +41,25 @@ class EuchreGame
         end 
     end
 
+    def determine_trump
+        order_round
+        unless @trump
+            call_round
+        end
+    end
+
+
     def order_round
         4.times do 
             if @players[track_players].order?
                 order_up
+                break
             end
         end
     end
 
     def order_up
-
+        dealer.order_up
     end
 
     def call_round
