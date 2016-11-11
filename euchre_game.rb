@@ -2,7 +2,7 @@ Dir.glob(File.expand_path("../Euchre/*.rb")).each do |file|
     require file
 end
 
-class EuchreGame 
+class EuchreGame
 
     attr_accessor :deck, :players, :turn
 
@@ -23,6 +23,7 @@ class EuchreGame
     def dealing_round
         update_turns
         assign_cards(@deck.deal)
+        decide_trump
     end
 
     def update_turns
@@ -35,6 +36,11 @@ class EuchreGame
             player.hand = hands[index]
             puts player.hand
         end 
+    end
+
+    def decide_trump
+        index = @turn
+        #@players[index].ask
     end
 
     def trick_round
