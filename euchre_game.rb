@@ -4,13 +4,14 @@ end
 
 class EuchreGame
 
-    attr_accessor :deck, :players, :turn, :trump
+    attr_accessor :deck, :players, :turn, :trump, :dealer_position
 
     ##
     # Initialization Block
     # Instantiates a Deck Object
     # Instantiates an array of 4 Player Objects
-    # Assigns a random 
+    # Assigns a random starting position
+    # 11/29/2016 - Tested, Complete
 
     def initialize
         @deck = Deck.new()
@@ -27,11 +28,15 @@ class EuchreGame
         trick_round
     end
 
+    ##
     # Deal Round 
+    # Tracks starting position
+    # Assigns cards to players hands
+    # 11/29/2016 - Tested, Complete
 
     def deal_round
         track_players
-        assign_cards(@deck.deal)
+        assign_cards
     end
 
     def track_players
@@ -43,13 +48,16 @@ class EuchreGame
         return @players[@dealer_position]
     end
 
-    def assign_cards(hands)
+    def assign_cards
+        hands = @deck.deal
         @players.each_with_index do |player, index|
             player.hand = hands[index]
         end 
     end
 
+    ##
     # Determining Trump 
+    # 11/29/2016 - In Development
 
     def determine_trump
         order_round
@@ -80,12 +88,10 @@ class EuchreGame
         end
     end 
 
+    ##
     # Trick Round
 
     def trick_round
         puts "implement trick round!"
     end
 end 
-
-game = EuchreGame.new
-game.play

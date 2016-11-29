@@ -29,6 +29,9 @@ class DeckTest < Minitest::Test
     def test_deal
         @deck.generate_deck
         assert_equal 4, @deck.deal.size
+        @deck.deal.each do |hand|
+            assert_equal 5, hand.size
+        end
     end
 
     def test_kitty 

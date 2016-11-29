@@ -35,7 +35,7 @@ class Deck
         @kitty = @deck.slice!(0..3)
         hands = []
         4.times do 
-            hands << @deck.slice!(0..3)
+            hands << @deck.slice!(0..4)
         end
         return hands
     end 
