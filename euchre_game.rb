@@ -40,8 +40,9 @@ class EuchreGame
     end
 
     def track_players
-        @dealer_position = @dealer_position%4
         @dealer_position += 1
+        @dealer_position = @dealer_position%4
+        return @dealer_position
     end
 
     def dealer

@@ -2,34 +2,35 @@
 
 class Player
 
-    attr_accessor :hand
+    attr_accessor :hand, :preferred_trump
 
     def initialize 
-        @hand = {}
+        @hand = []
     end
 
     def order?
-        if match_strategy? 
-            return true
-        else 
-            return false 
-        end
+        match_strategy?
     end 
 
     def match_strategy?
-
+        false
     end
 
-    def order_up
-
+    def order_up(card)
+        @hand.pop()
+        @hand.push(card)
     end
 
     def call?
-
+        trump_confidence?
     end 
 
-    def call
+    def trump_confidence?
+        false
+    end
 
+    def call
+        @preferred_trump
     end
 
 end 

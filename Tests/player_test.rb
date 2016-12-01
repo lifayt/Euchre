@@ -10,8 +10,8 @@ class PlayerTest < MiniTest::Test
     end
 
     def init_test
-        assert_equal x = {}, @player.hand
+        assert_equal x = [], @player.hand
     end
 
-    
+
 end

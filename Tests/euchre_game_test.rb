@@ -16,10 +16,12 @@ class EuchreGameTest < Minitest::Test
     end
 
     def test_track_players
-        assert_equal @game.dealer_position+1, @game.track_players
+        assert_equal (@game.dealer_position+1)%4, @game.track_players
         10.times do 
             position = @game.track_players
-            assert_equal true, ((position < 5) & (position > 0))
+            # puts "Position: #{position}, 0<position<4: #{((position < 4) & (position >= 0))}"
+            assert_equal true, ((position < 4) & (position >= 0))
+            assert_equal Player, @game.players[position].class
         end
     end
 
