@@ -25,7 +25,7 @@ class EuchreGame
     def play
         deal_round
         determine_trump
-        trick_round
+        trick_rounds
     end
 
     ##
@@ -59,6 +59,7 @@ class EuchreGame
     ##
     # Determining Trump 
     # 11/29/2016 - In Development
+    # 12/6/2016 - Tested, no bugs, functionality missing
 
     def determine_trump
         order_round
@@ -91,8 +92,11 @@ class EuchreGame
 
     ##
     # Trick Round
+    # 12/6/2016 In Development
 
-    def trick_round
-        puts "implement trick round!"
+    def trick_rounds
+        trick = Trick.new(@players)
+        trick.play
     end
+
 end 

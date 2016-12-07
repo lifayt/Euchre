@@ -33,4 +33,12 @@ class Player
         @preferred_trump
     end
 
+    def start_round
+        
+    end 
+
+    def play_round
+
+    end
+
 end 

@@ -1,0 +1,9 @@
+
+In the round that determines trump, several things have to 
+be decided in order to play tricks.
+
+1. Trump has to be decided
+2. The attacking team has to be decided
+3. The defending team has to be decided
+
+What object should hold all the game data?
