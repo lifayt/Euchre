@@ -4,8 +4,8 @@ end
 
 class EuchreGame
 
-    attr_accessor :deck, :players, :turn, :trump, :dealer_position
-
+    attr_accessor :deck, :turn, :trump, :dealer_position
+    attr_accessor :players, :team_1, :team_2
     ##
     # Initialization Block
     # Instantiates a Deck Object
@@ -16,10 +16,16 @@ class EuchreGame
     def initialize
         @deck = Deck.new()
         @players = []
+        create_players
+        @dealer_position = rand(4)
+    end 
+
+    def create_players
         4.times do 
             @players << Player.new()
         end
-        @dealer_position = rand(4)
+        @team_1 = {:players => [@players[0], @players[2]], :attacking => false, :defending => false}
+        @team_2 = {:players => [@players[1], @players[3]], :attacking => false, :defending => false}
     end 
 
     def play
@@ -46,7 +52,7 @@ class EuchreGame
     end
 
     def dealer
-        return @players[@dealer_position]
+        @players[@dealer_position]
     end
 
     def assign_cards
@@ -70,7 +76,9 @@ class EuchreGame
 
     def order_round
         4.times do 
-            if @players[track_players].order?
+            player = @players[track_players]
+            if player.order?
+                set_teams(player)
                 order_up
                 break
             end
@@ -81,14 +89,36 @@ class EuchreGame
         dealer.order_up
     end
 
+    def set_teams(player)
+        [@team_1, @team_2].each do |team|
+            if team.players.contains? (player)
+                team.attacking = true
+                team.defending = false
+            else 
+                team.defending = true
+                team.attacking = false
+            end
+        end
+    end
+
     def call_round
-        4.times do
-            if @players[track_players].call?
-                @players[track_players].call
+        @trump = nil
+        3.times do
+            player = @players[track_players]
+            if player.call?
+                player.call
+                set_teams(player)
                 break
             end
         end
+        if @trump.nil?
+            screw_the_dealer
+        end
     end 
+
+    def screw_the_dealer
+        @players[@dealer_position].call
+    end
 
     ##
     # Trick Round
