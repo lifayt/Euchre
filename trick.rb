@@ -24,5 +24,5 @@ class Trick
         3.times do |index| 
             @players[(starting_player + index)%4].play_round
         end
-    end
+    end 
 end
